@@ -15,6 +15,8 @@ public class MonsterRed : MonoBehaviour, MonsterStrategy
     public void Scoring()
     {
         score.text = (int.Parse(score.text) + 200).ToString();
+        transform.GetComponent<SpriteRenderer>().enabled = false;
+        transform.position = startPos;
     }
 
     public void ActiveMove()
@@ -89,7 +91,7 @@ public class MonsterRed : MonoBehaviour, MonsterStrategy
                 goToRocket = false;
             }
 
-            if (!goToRocket) transform.position = Vector2.MoveTowards(transform.position, targetPos, monsterSpeed * 2 * Time.deltaTime);
+            if (!goToRocket) transform.position = Vector2.MoveTowards(transform.position, targetPos, monsterSpeed * 1.5f * Time.deltaTime);
 
             if (Mathf.Abs(transform.position.y - startPos.y) < 0.1 && Mathf.Abs(transform.position.x - startPos.x) < 0.1)
             {

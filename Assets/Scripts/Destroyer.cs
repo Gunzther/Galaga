@@ -38,10 +38,10 @@ public class Destroyer : MonoBehaviour
             if(targetTag == "monster")
             {
                 collision.gameObject.GetComponent<MonsterStrategy>().Scoring();
-                collision.gameObject.GetComponentInParent<GameplayManager>().removeChildIndex(collision.transform.GetSiblingIndex());
-                print(collision.transform.GetSiblingIndex());
+                print("i: " + collision.transform.GetSiblingIndex());
                 collision.gameObject.SetActive(false);
                 Destroy(this.gameObject);
+                collision.gameObject.GetComponentInParent<GameplayManager>().removeChildIndex(collision.transform.GetSiblingIndex());
             }
 
             if(targetTag == "rocket")

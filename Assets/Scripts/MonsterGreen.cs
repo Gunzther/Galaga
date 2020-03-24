@@ -14,6 +14,9 @@ public class MonsterGreen : MonoBehaviour, MonsterStrategy
     public void Scoring()
     {
         score.text = (int.Parse(score.text) + 300).ToString();
+        transform.GetComponent<SpriteRenderer>().enabled = false;
+        transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 0, 1));
+        transform.position = startPos;
     }
 
     public void ActiveMove()

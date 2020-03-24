@@ -14,6 +14,8 @@ public class MonsterBlue : MonoBehaviour, MonsterStrategy
     public void Scoring()
     {
         score.text = (int.Parse(score.text) + 100).ToString();
+        transform.GetComponent<SpriteRenderer>().enabled = false;
+        transform.position = startPos;
     }
 
     public void ActiveMove()
@@ -62,7 +64,6 @@ public class MonsterBlue : MonoBehaviour, MonsterStrategy
             {
                 if (!setEndTarget)
                 {
-                    print("set end target");
                     if(transform.position.x > 0) targetPos = rightChecker.transform.position;
                     else targetPos = leftChecker.transform.position;
                     setEndTarget = true;
@@ -70,7 +71,7 @@ public class MonsterBlue : MonoBehaviour, MonsterStrategy
                 goToRocket = false;
             }
 
-            if(!goToRocket) transform.position = Vector2.MoveTowards(transform.position, targetPos, monsterSpeed * 1.5f * Time.deltaTime);
+            if(!goToRocket) transform.position = Vector2.MoveTowards(transform.position, targetPos, monsterSpeed * 2f * Time.deltaTime);
 
             if (Mathf.Abs(transform.position.y - startPos.y) < 0.1 && Mathf.Abs(transform.position.x - startPos.x) < 0.1)
             {

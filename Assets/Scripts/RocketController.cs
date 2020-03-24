@@ -18,16 +18,11 @@ public class RocketController : MonoBehaviour
     void Start()
     {
         livesText.text = "LIVES: " + lives;
-
-        if (active)
-        {
-            transform.position = new Vector3(0, -4.5f, 0);
-            timer = 0;
-            startCountdown = false;
-            cooldown = false;
-            destroyCoolDown = false;
-            transform.tag = "rocket";
-        }
+        transform.position = new Vector3(0, -4.5f, 0);
+        timer = 0;
+        startCountdown = false;
+        cooldown = false;
+        destroyCoolDown = false;
     }
 
     // Update is called once per frame
@@ -53,7 +48,8 @@ public class RocketController : MonoBehaviour
                 startCountdown = true;
             }
 
-            //if (startCountdown) //Shooting cool down
+            //Shooting cool down
+            //if (startCountdown)
             //{
             //    timer += Time.deltaTime;
             //    if (timer > Random.Range(0.3f, 0.5f))

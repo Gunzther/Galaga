@@ -14,12 +14,25 @@ public class GameplayManager : MonoBehaviour
 
     private float timer;
     private List<int> randNum, childIndex;
-    private bool activeMonster;
+    private bool activeMonster, restart;
 
     public void removeChildIndex(int index)
     {
         childIndex.Remove(index);
         print(childIndex.Count());
+        if(childIndex.Count() == 0)
+        {
+            restart = true;
+
+            foreach (Transform child in transform)
+            {
+                child.GetComponent<SpriteRenderer>().enabled = true;
+                print("set sprite");
+                child.gameObject.SetActive(true);
+                print("set active");
+            }
+            Start();
+        }
     }
 
     void Start()
@@ -27,7 +40,8 @@ public class GameplayManager : MonoBehaviour
         timer = 0;
         randNum = new List<int>();
         activeMonster = false;
-        childIndex = Enumerable.Range(1, 40).ToList();
+        childIndex = Enumerable.Range(0, 40).ToList();
+        restart = false;
     }
 
     void Update()
@@ -35,14 +49,14 @@ public class GameplayManager : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > 3 && !activeMonster)
         {
-            for (int i = 0; i < 3;)
+            randNum = new List<int>();
+            for (int i = 0; i < 3; i++)
             {
                 int num = childIndex[Random.Range(0, childIndex.Count() - 1)];
-                if (!randNum.Contains(num) && transform.GetChild(num).gameObject.activeSelf)
+                if (!restart && !randNum.Contains(num) && transform.GetChild(num).gameObject.activeSelf)
                 {
                     randNum.Add(num);
                     transform.GetChild(num).GetComponent<MonsterStrategy>().ActiveMove();
-                    i++;
                 }
             }
             activeMonster = true;
