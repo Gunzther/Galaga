@@ -10,7 +10,7 @@ public class GameplayManager : MonoBehaviour
     public float blueSpeed, redSpeed, greenSpeed;
     public int redBulletAmounts;
     public float redBulletSpeed;
-    public GameObject mbullet;
+    public GameObject mbullet, leftChecker, rightChecker;
 
     private float timer;
     private List<int> randNum, childIndex;
@@ -35,8 +35,7 @@ public class GameplayManager : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > 3 && !activeMonster)
         {
-            int loops = Random.Range(2, 4);
-            for (int i = 0; i < loops;)
+            for (int i = 0; i < 3;)
             {
                 int num = childIndex[Random.Range(0, childIndex.Count() - 1)];
                 if (!randNum.Contains(num) && transform.GetChild(num).gameObject.activeSelf)

@@ -2684,9 +2684,11 @@ MonoBehaviour:
   blueSpeed: 3
   redSpeed: 3
   greenSpeed: 2
-  redBulletAmounts: 5
+  redBulletAmounts: 3
   redBulletSpeed: 3
   mbullet: {fileID: 5652369813618932672, guid: 29cf8dea6f32f8346b2471f2bc352524, type: 3}
+  leftChecker: {fileID: 1175884583}
+  rightChecker: {fileID: 553976495}
 --- !u!1001 &1589113446
 PrefabInstance:
   m_ObjectHideFlags: 0

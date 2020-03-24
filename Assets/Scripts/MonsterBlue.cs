@@ -8,7 +8,7 @@ public class MonsterBlue : MonoBehaviour, MonsterStrategy
     private Text score;
     private float monsterSpeed;
     private bool attack, setEndTarget, goToRocket;
-    private GameObject target;
+    private GameObject target, leftChecker, rightChecker;
     private Vector2 targetPos, startPos;
 
     public void Scoring()
@@ -36,17 +36,18 @@ public class MonsterBlue : MonoBehaviour, MonsterStrategy
         setEndTarget = false;
     }
 
-    private void SetMonsterValue()
+    private void Awake()
     {
         GameplayManager setting = transform.parent.GetComponent<GameplayManager>();
         score = setting.score;
         monsterSpeed = setting.blueSpeed;
+        leftChecker = setting.leftChecker;
+        rightChecker = setting.rightChecker;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SetMonsterValue();
         startPos = transform.position;
         attack = false;
         setEndTarget = false;
@@ -57,21 +58,19 @@ public class MonsterBlue : MonoBehaviour, MonsterStrategy
     {
         if (attack)
         {
-            //print("target: " + target.name + " Pos: " + target.transform.position.ToString());
-
             if (transform.position.y < -5.5f)
             {
                 if (!setEndTarget)
                 {
                     print("set end target");
-                    if(transform.position.x > 0) targetPos = GameObject.Find("CheckPointRight").transform.position;
-                    else targetPos = GameObject.Find("CheckPointLeft").transform.position;
+                    if(transform.position.x > 0) targetPos = rightChecker.transform.position;
+                    else targetPos = leftChecker.transform.position;
                     setEndTarget = true;
                 }
                 goToRocket = false;
             }
 
-            if(!goToRocket) transform.position = Vector2.MoveTowards(transform.position, targetPos, monsterSpeed * 2 * Time.deltaTime);
+            if(!goToRocket) transform.position = Vector2.MoveTowards(transform.position, targetPos, monsterSpeed * 1.5f * Time.deltaTime);
 
             if (Mathf.Abs(transform.position.y - startPos.y) < 0.1 && Mathf.Abs(transform.position.x - startPos.x) < 0.1)
             {

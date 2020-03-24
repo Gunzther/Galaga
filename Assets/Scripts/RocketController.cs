@@ -53,20 +53,20 @@ public class RocketController : MonoBehaviour
                 startCountdown = true;
             }
 
-            if (startCountdown) //Shooting cool down
-            {
-                timer += Time.deltaTime;
-                if (timer > Random.Range(0.3f, 0.5f))
-                {
-                    cooldown = true;
-                }
-                if (timer > Random.Range(0.7f, 0.75f))
-                {
-                    cooldown = false;
-                    startCountdown = false;
-                    timer = 0;
-                }
-            }
+            //if (startCountdown) //Shooting cool down
+            //{
+            //    timer += Time.deltaTime;
+            //    if (timer > Random.Range(0.3f, 0.5f))
+            //    {
+            //        cooldown = true;
+            //    }
+            //    if (timer > Random.Range(0.7f, 0.75f))
+            //    {
+            //        cooldown = false;
+            //        startCountdown = false;
+            //        timer = 0;
+            //    }
+            //}
         }
 
         if (destroyCoolDown) //Cool down when rocket be destroyed

@@ -8,7 +8,7 @@ public class MonsterRed : MonoBehaviour, MonsterStrategy
     private Text score;
     private int bulletAmounts;
     private bool attack, setEndTarget, goToRocket;
-    private GameObject target, mbullet;
+    private GameObject target, mbullet, leftChecker, rightChecker;
     private Vector2 targetPos, startPos;
     private float degreeRatio, monsterSpeed, bulletSpeed;
 
@@ -50,7 +50,7 @@ public class MonsterRed : MonoBehaviour, MonsterStrategy
         }
     }
 
-    private void SetMonsterValue()
+    private void Awake()
     {
         GameplayManager setting = transform.parent.GetComponent<GameplayManager>();
         score = setting.score;
@@ -59,12 +59,13 @@ public class MonsterRed : MonoBehaviour, MonsterStrategy
         mbullet = setting.mbullet;
         monsterSpeed = setting.redSpeed;
         bulletSpeed = setting.redBulletSpeed;
+        leftChecker = setting.leftChecker;
+        rightChecker = setting.rightChecker;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SetMonsterValue();
         startPos = transform.position;
         attack = false;
         setEndTarget = false;
@@ -81,8 +82,8 @@ public class MonsterRed : MonoBehaviour, MonsterStrategy
                 if (!setEndTarget)
                 {
                     Shoot();
-                    if (transform.position.x > 0) targetPos = GameObject.Find("CheckPointRight").transform.position;
-                    else targetPos = GameObject.Find("CheckPointLeft").transform.position;
+                    if (transform.position.x > 0) targetPos = rightChecker.transform.position;
+                    else targetPos = leftChecker.transform.position;
                     setEndTarget = true;
                 }
                 goToRocket = false;

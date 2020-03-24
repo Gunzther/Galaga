@@ -8,7 +8,7 @@ public class MonsterGreen : MonoBehaviour, MonsterStrategy
     private Text score;
     private float monsterSpeed, timer;
     private bool active, setEndTarget, goToRocket;
-    private GameObject target;
+    private GameObject target, leftChecker, rightChecker;
     private Vector2 targetPos, startPos;
 
     public void Scoring()
@@ -45,17 +45,18 @@ public class MonsterGreen : MonoBehaviour, MonsterStrategy
         transform.GetChild(0).gameObject.SetActive(true);
     }
 
-    private void SetMonsterValue()
+    private void Awake()
     {
         GameplayManager setting = transform.parent.GetComponent<GameplayManager>();
         score = setting.score;
         monsterSpeed = setting.blueSpeed;
+        leftChecker = setting.leftChecker;
+        rightChecker = setting.rightChecker;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SetMonsterValue();
         startPos = transform.position;
         active = false;
         setEndTarget = false;
@@ -74,8 +75,8 @@ public class MonsterGreen : MonoBehaviour, MonsterStrategy
                     if (timer > 1)
                     {
                         transform.GetChild(0).gameObject.SetActive(false);
-                        if (transform.position.x > 0) targetPos = GameObject.Find("CheckPointRight").transform.position;
-                        else targetPos = GameObject.Find("CheckPointLeft").transform.position;
+                        if (transform.position.x > 0) targetPos = rightChecker.transform.position;
+                        else targetPos = leftChecker.transform.position;
                         setEndTarget = true;
                     }
                 }
