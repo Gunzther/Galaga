@@ -40,12 +40,12 @@ public class RocketController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                transform.position = new Vector3(transform.position.x - speed, -4.5f, 0);
+                if(transform.position.x > -6.5) transform.position = new Vector3(transform.position.x - speed, -4.5f, 0);
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                transform.position = new Vector3(transform.position.x + speed, -4.5f, 0);
+                if (transform.position.x < 6.5) transform.position = new Vector3(transform.position.x + speed, -4.5f, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.Space) && !cooldown)
