@@ -7,6 +7,8 @@ public interface MonsterStrategy
 {
     void Scoring();
 
+    void ResetPos();
+
     void ActiveMove();
 
     void AttackPlayer();

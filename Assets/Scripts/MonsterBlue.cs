@@ -14,8 +14,14 @@ public class MonsterBlue : MonoBehaviour, MonsterStrategy
     public void Scoring()
     {
         score.text = (int.Parse(score.text) + 100).ToString();
+    }
+
+    public void ResetPos()
+    {
         transform.GetComponent<SpriteRenderer>().enabled = false;
         transform.position = startPos;
+        attack = false;
+        setEndTarget = false;
     }
 
     public void ActiveMove()
@@ -55,7 +61,7 @@ public class MonsterBlue : MonoBehaviour, MonsterStrategy
         setEndTarget = false;
     }
 
-    // Update is called once per frame
+    // Update monster movement
     void Update()
     {
         if (attack)

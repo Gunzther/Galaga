@@ -14,12 +14,18 @@ public class MonsterGreen : MonoBehaviour, MonsterStrategy
     public void Scoring()
     {
         score.text = (int.Parse(score.text) + 300).ToString();
+    }
+
+    public void ResetPos()
+    {
         transform.GetComponent<SpriteRenderer>().enabled = false;
         transform.rotation = Quaternion.AngleAxis(0, new Vector3(0, 0, 1));
         transform.position = startPos;
+        active = false;
+        setEndTarget = false;
     }
 
-    public void ActiveMove()
+public void ActiveMove()
     {
         target = GameObject.FindGameObjectWithTag("rocket");
         transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 0, 1));
@@ -65,7 +71,7 @@ public class MonsterGreen : MonoBehaviour, MonsterStrategy
         setEndTarget = false;
     }
 
-    // Update is called once per frame
+    // Update monster movement
     void Update()
     {
         if (active)

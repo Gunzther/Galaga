@@ -15,8 +15,15 @@ public class MonsterRed : MonoBehaviour, MonsterStrategy
     public void Scoring()
     {
         score.text = (int.Parse(score.text) + 200).ToString();
+        ResetPos();
+    }
+
+    public void ResetPos()
+    {
         transform.GetComponent<SpriteRenderer>().enabled = false;
         transform.position = startPos;
+        attack = false;
+        setEndTarget = false;
     }
 
     public void ActiveMove()
@@ -74,7 +81,7 @@ public class MonsterRed : MonoBehaviour, MonsterStrategy
         degreeRatio = 90 / (bulletAmounts - 1);
     }
 
-    // Update is called once per frame
+    // Update monster movement
     void Update()
     {
         if (attack)
