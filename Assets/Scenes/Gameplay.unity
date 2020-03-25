@@ -4200,7 +4200,7 @@ PrefabInstance:
     - target: {fileID: 6734650346004528866, guid: 63c1d9f2f0137744d9156e9bab93b014,
         type: 3}
       propertyPath: m_Name
-      value: ROCKET1
+      value: ROCKET
       objectReference: {fileID: 0}
     - target: {fileID: 6734650346004528868, guid: 63c1d9f2f0137744d9156e9bab93b014,
         type: 3}
