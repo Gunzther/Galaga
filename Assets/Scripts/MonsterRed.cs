@@ -102,7 +102,7 @@ public class MonsterRed : MonoBehaviour, MonsterStrategy
 
             if (Mathf.Abs(transform.position.y - startPos.y) < 0.1 && Mathf.Abs(transform.position.x - startPos.x) < 0.1)
             {
-                attack = false;
+                Start();
             }
 
             else

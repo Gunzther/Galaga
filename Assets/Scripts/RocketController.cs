@@ -75,7 +75,7 @@ public class RocketController : MonoBehaviour
         if (destroyCoolDown) //Cool down when rocket be destroyed
         {
             timer += Time.deltaTime;
-            if (timer > 3)
+            if (timer > 2)
             {
                 destroyCoolDown = false;
                 timer = 0;
