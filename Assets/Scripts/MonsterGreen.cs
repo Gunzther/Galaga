@@ -69,6 +69,7 @@ public void ActiveMove()
         startPos = transform.position;
         active = false;
         setEndTarget = false;
+        transform.GetChild(0).gameObject.SetActive(false);
     }
 
     // Update monster movement
